@@ -6,7 +6,9 @@ Metoda w zadaniu 3 może być zainplmenetowana bez pobierania z bazy danych wszy
 ```C#
 var employee = db
   .Employees
-  .Find(employeeId);
+  .Include(employee => employee.Vacations)
+  .Include(employee => employee.VacationPackage)
+  .Single(employee => employee.Id == employeeId);
 
 var currentYear = DateTime.Now.Year;
 var daySum = employee
@@ -16,3 +18,4 @@ var daySum = employee
 
 return Math.Max(0, employee.VacationPackage.GrantedDays - daySum);
 ```
+W tym wypadku używamy tylko `vacations` związanych z danym `employee` i sumujemy dni w bazie danych.
