@@ -22,10 +22,6 @@ public class Vacation {
     [ForeignKey(nameof(Employee))]
     private int _employeeId { get; set; }
 
-    public int Days {
-        get {
-            var now = DateTime.Now;
-            return ((DateUntil < now ? DateUntil : now) - DateSince).Days + 1; // end inclusive
-        }
-    }
+    [NotMapped]
+    public int Days => ((DateUntil < DateTime.Now ? DateUntil : DateTime.Now) - DateSince).Days + 1; // end inclusive
 }

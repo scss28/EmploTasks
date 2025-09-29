@@ -22,6 +22,7 @@ public class Task2 {
         var now = DateTime.Now;
         return db
             .Employees
+            .AsEnumerable()
             .Select(employee => new EmployeeUsedVacationDays()
             {
                 Employee = employee,

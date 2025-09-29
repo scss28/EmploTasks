@@ -6,9 +6,10 @@ public class Task3 {
     public static int CountFreeDaysForEmployee(Employee employee, List<Vacation> vacations, VacationPackage vacationPackage) {
         if (vacationPackage.Id != employee.VacationPackage.Id) throw new ArgumentException("Invalid vacation package for this employee.");
 
+        var currentYear = DateTime.Now.Year;
         var daySum = 0;
         foreach (var vacation in vacations) {
-            if (vacation.Employee.Id != employee.Id) continue;
+            if (vacation.Employee.Id != employee.Id || vacation.DateSince.Year != currentYear) continue;
             daySum += vacation.Days;
         }
 

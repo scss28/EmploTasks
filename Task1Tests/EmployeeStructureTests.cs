@@ -2,7 +2,7 @@
 
 namespace Task1Tests;
 
-public class Tests {
+public class EmployeeStructureTests {
     Employee[] _employees;
 
     [Test]

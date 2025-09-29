@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Task2To6;
 using Task2To6Tests;
 
@@ -8,10 +9,13 @@ public class Task3Tests {
 
     [Test]
     public void Test() {
-        var john = _db.Employees.First(employee => employee.Name == "John .NET");
+        var john = _db.Employees
+            .Include(employee => employee.Vacations)
+            .Include(employee => employee.VacationPackage)
+            .First(employee => employee.Name == "John .NET");
         var johnLeftDays = Task3.CountFreeDaysForEmployee(john, [.. john.Vacations], john.VacationPackage);
 
-        Assert.That(johnLeftDays, Is.EqualTo(13));
+        Assert.That(johnLeftDays, Is.EqualTo(20));
     }
 
     [OneTimeSetUp]

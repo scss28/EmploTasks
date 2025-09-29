@@ -3,7 +3,7 @@ using Task2To6;
 using Task2To6.Model;
 
 namespace Task2To6Tests;
-internal class TestHelper {
+internal static class TestHelper {
     public static DatabaseContext SampleDb {
         get {
             var options = new DbContextOptionsBuilder()
